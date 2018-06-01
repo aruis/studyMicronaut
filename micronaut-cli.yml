@@ -1,0 +1,5 @@
+profile: service
+defaultPackage: studymn
+---
+testFramework: junit
+sourceLanguage: java
