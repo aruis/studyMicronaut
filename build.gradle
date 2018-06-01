@@ -13,12 +13,12 @@ buildscript {
 version "0.1"
 group "studymn"
 
-apply plugin:"io.spring.dependency-management"
-apply plugin:"com.github.johnrengelman.shadow"
-apply plugin:"application"
-apply plugin:"java"
-apply plugin:"net.ltgt.apt-eclipse"
-apply plugin:"net.ltgt.apt-idea"
+apply plugin: "io.spring.dependency-management"
+apply plugin: "com.github.johnrengelman.shadow"
+apply plugin: "application"
+apply plugin: "groovy"
+apply plugin: "net.ltgt.apt-eclipse"
+apply plugin: "net.ltgt.apt-idea"
 
 
 repositories {
@@ -26,6 +26,7 @@ repositories {
     mavenCentral()
     maven { url "https://jcenter.bintray.com" }
 }
+
 
 dependencyManagement {
     imports {
@@ -37,10 +38,16 @@ dependencies {
     annotationProcessor "io.micronaut:inject-java"
     compile "io.micronaut:http-client"
     compile "io.micronaut:http-server-netty"
+    compile "io.micronaut:runtime-groovy"
     compile "io.micronaut:inject"
     compile "io.micronaut:runtime"
+    compileOnly "io.micronaut:inject-groovy"
     compileOnly "io.micronaut:inject-java"
     runtime "ch.qos.logback:logback-classic:1.2.3"
+    testCompile "io.micronaut:inject-groovy"
+    testCompile("org.spockframework:spock-core:1.1-groovy-2.4") {
+        exclude group: "org.codehaus.groovy", module: "groovy-all"
+    }
     testCompile "junit:junit:4.12"
     testCompile "io.micronaut:inject-java"
 }
